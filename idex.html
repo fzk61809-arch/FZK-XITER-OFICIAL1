@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FZK XITER</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at top,#241334 0%,#0b0910 38%,#07070b 100%);
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.page{
+    min-height:100vh;
+    padding:20px 15px 35px;
+}
+
+.container{
+    width:100%;
+    max-width:680px;
+    margin:auto;
+}
+
+/* LOGO */
+
+.logo{
+    text-align:center;
+    font-size:34px;
+    font-weight:900;
+    letter-spacing:1px;
+    padding:22px 0 25px;
+}
+
+.logo span{
+    color:#b45cff;
+    text-shadow:0 0 20px rgba(180,92,255,.45);
+}
+
+/* CARD */
+
+.card{
+    background:rgba(19,18,29,.92);
+    border:1px solid #352548;
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:16px;
+    box-shadow:0 12px 35px rgba(0,0,0,.25);
+}
+
+.card-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:17px;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+.card-title .icon{
+    width:35px;
+    height:35px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    background:#281637;
+}
+
+/* LABELS */
+
+label{
+    display:block;
+    color:#a9a3b2;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:.7px;
+    margin:17px 0 8px;
+}
+
+/* SELECT */
+
+.select-wrap{
+    position:relative;
+}
+
+select{
+    width:100%;
+    height:50px;
+    padding:0 14px;
+    border-radius:12px;
+    border:1px solid #40324f;
+    outline:none;
+    background:#1a1824;
+    color:#fff;
+    font-size:14px;
+    appearance:auto;
+}
+
+select:focus{
+    border-color:#a855f7;
+    box-shadow:0 0 0 3px rgba(168,85,247,.12);
+}
+
+/* BUTTON */
+
+button{
+    width:100%;
+    height:50px;
+    margin-top:16px;
+    border:0;
+    border-radius:12px;
+    color:#fff;
+    font-size:14px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s;
+}
+
+button:active{
+    transform:scale(.98);
+}
+
+.generate{
+    background:linear-gradient(135deg,#a855f7,#7434b8);
+    box-shadow:0 8px 25px rgba(168,85,247,.25);
+}
+
+.copy{
+    background:linear-gradient(135deg,#009fba,#007f99);
+}
+
+.back{
+    background:#292633;
+}
+
+/* RESULTADO */
+
+.result-title{
+    text-align:center;
+    font-size:25px;
+    font-weight:900;
+    margin:4px 0 20px;
+}
+
+.result-title span{
+    color:#c084fc;
+}
+
+.device-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.info-box{
+    background:#17151f;
+    border:1px solid #30263d;
+    border-radius:13px;
+    padding:14px;
+    text-align:center;
+}
+
+.info-box small{
+    display:block;
+    color:#8e8997;
+    font-size:10px;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.info-box strong{
+    color:#c084fc;
+    font-size:15px;
+}
+
+/* SENSI */
+
+.sense{
+    margin-bottom:19px;
+}
+
+.sense-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:7px;
+}
+
+.sense-name{
+    color:#d7d3dc;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.sense-value{
+    color:#c084fc;
+    font-size:14px;
+    font-weight:900;
+}
+
+.bar{
+    height:8px;
+    background:#292532;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.fill{
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,#7434b8,#c084fc);
+}
+
+/* CONFIG */
+
+.config{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    background:#17151f;
+    border:1px solid #2b2336;
+    padding:13px;
+    border-radius:11px;
+    margin-bottom:9px;
+}
+
+.config span{
+    color:#898391;
+    font-size:10px;
+}
+
+.config strong{
+    font-size:12px;
+    text-align:right;
+}
+
+/* STATUS */
+
+.status{
+    text-align:center;
+    color:#77717f;
+    font-size:11px;
+    margin-top:13px;
+}
+
+/* HIDDEN */
+
+.hidden{
+    display:none !important;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:430px){
+
+    .page{
+        padding:15px 12px 30px;
+    }
+
+    .logo{
+        font-size:30px;
+    }
+
+    .card{
+        padding:16px;
+        border-radius:17px;
+    }
+
+    .device-box{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================
+     TELA INICIAL
+===================================== -->
+
+<div id="home" class="page">
+
+    <div class="container">
+
+        <div class="logo">
+            FZK <span>XITER</span>
+        </div>
+
+        <div class="card">
+
+            <div class="card-title">
+                <div class="icon">📱</div>
+                CONFIGURAÇÃO DO DISPOSITIVO
+            </div>
+
+            <!-- MARCA -->
+
+            <label>MARCA DO CELULAR</label>
+
+            <div class="select-wrap">
+                <select id="brand" onchange="updateModels()">
+
+                    <option value="SAMSUNG">
+                        SAMSUNG
+                    </option>
+
+                    <option value="MOTOROLA">
+                        MOTOROLA
+                    </option>
+
+                    <option value="XIAOMI">
+                        XIAOMI
+                    </option>
+
+                    <option value="POCO">
+                        POCO
+                    </option>
+
+                    <option value="IPHONE">
+                        IPHONE
+                    </option>
+
+                </select>
+            </div>
+
+            <!-- MODELO -->
+
+            <label>MODELO DO DISPOSITIVO</label>
+
+            <div class="select-wrap">
+                <select id="model"></select>
+            </div>
+
+            <!-- TIPO -->
+
+            <label>TIPO DE SENSIBILIDADE</label>
+
+            <select id="senseType">
+
+                <option value="LOW">
+                    SENSI BAIXA
+                </option>
+
+                <option value="MEDIUM" selected>
+                    SENSI MÉDIA
+                </option>
+
+                <option value="HIGH">
+                    SENSI ALTA
+                </option>
+
+            </select>
+
+            <!-- DPI -->
+
+            <label>DPI</label>
+
+            <select id="dpiType">
+
+                <option value="NO">
+                    SEM DPI
+                </option>
+
+                <option value="YES">
+                    COM DPI
+                </option>
+
+            </select>
+
+            <button
+                type="button"
+                class="generate"
+                onclick="generate()">
+
+                ⚡ GERAR SENSIBILIDADE
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================
+     TELA DE RESULTADO
+===================================== -->
+
+<div id="result" class="page hidden">
+
+    <div class="container">
+
+        <div class="logo">
+            FZK <span>XITER</span>
+        </div>
+
+        <div class="result-title">
+            SENSIBILIDADE <span>GERADA</span>
+        </div>
+
+        <!-- MARCA / MODELO -->
+
+        <div class="device-box">
+
+            <div class="info-box">
+
+                <small>MARCA</small>
+
+                <strong id="resultBrand">
+                    SAMSUNG
+                </strong>
+
+            </div>
+
+            <div class="info-box">
+
+                <small>MODELO</small>
+
+                <strong id="resultModel">
+                    GALAXY
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- TIPO E DPI -->
+
+        <div class="card">
+
+            <div class="device-box">
+
+                <div class="info-box">
+
+                    <small>SENSIBILIDADE</small>
+
+                    <strong id="resultType">
+                        SENSI MÉDIA
+                    </strong>
+
+                </div>
+
+                <div class="info-box">
+
+                    <small>DPI</small>
+
+                    <strong id="resultDpi">
+                        SEM DPI
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="card-title">
+                <div class="icon">🎯</div>
+                SENSIBILIDADE
+            </div>
+
+            <div id="senseList"></div>
+
+        </div>
+
+
+        <!-- CONFIGURAÇÕES GERADAS -->
+
+        <div class="card">
+
+            <div class="card-title">
+                <div class="icon">⚙️</div>
+                CONFIGURAÇÃO DO APARELHO
+            </div>
+
+            <div id="configList"></div>
+
+        </div>
+
+
+        <!-- COPIAR -->
+
+        <button
+            type="button"
+            class="copy"
+            onclick="copyConfig()">
+
+            📋 COPIAR CONFIGURAÇÃO
+
+        </button>
+
+
+        <!-- VOLTAR -->
+
+        <button
+            type="button"
+            class="back"
+            onclick="backHome()">
+
+            ⬅️ VOLTAR
+
+        </button>
+
+
+        <div
+            id="status"
+            class="status">
+
+            CONFIGURAÇÃO GERADA PELO FZK XITER
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================
+   MODELOS POR MARCA
+===================================== */
+
+const models = {
+
+    SAMSUNG: [
+        "GALAXY A05",
+        "GALAXY A05S",
+        "GALAXY A14",
+        "GALAXY A15",
+        "GALAXY A24",
+        "GALAXY A25",
+        "GALAXY A34",
+        "GALAXY A35",
+        "GALAXY A54",
+        "GALAXY A55",
+        "GALAXY S21",
+        "GALAXY S22",
+        "GALAXY S23",
+        "GALAXY S24",
+        "GALAXY S25"
+    ],
+
+    MOTOROLA: [
+        "MOTO G14",
+        "MOTO G24",
+        "MOTO G34",
+        "MOTO G54",
+        "MOTO G55",
+        "MOTO G84",
+        "MOTO G85",
+        "MOTO EDGE 40",
+        "MOTO EDGE 50",
+        "MOTO EDGE 60"
+    ],
+
+    XIAOMI: [
+        "REDMI 10",
+        "REDMI 12",
+        "REDMI 13",
+        "REDMI NOTE 11",
+        "REDMI NOTE 12",
+        "REDMI NOTE 13",
+        "REDMI NOTE 14",
+        "XIAOMI 12",
+        "XIAOMI 13",
+        "XIAOMI 14"
+    ],
+
+    POCO: [
+        "POCO C40",
+        "POCO C65",
+        "POCO M5",
+        "POCO M6",
+        "POCO M6 PRO",
+        "POCO X3",
+        "POCO X5",
+        "POCO X6",
+        "POCO X6 PRO",
+        "POCO F5",
+        "POCO F6"
+    ],
+
+    APPLE: [
+        "IPHONE 11",
+        "IPHONE 12",
+        "IPHONE 13",
+        "IPHONE 14",
+        "IPHONE 15",
+        "IPHONE 16",
+        "IPHONE 17",
+        "IPHONE 11 PRO",
+        "IPHONE 12 PRO",
+        "IPHONE 13 PRO",
+        "IPHONE 14 PRO",
+        "IPHONE 15 PRO",
+        "IPHONE 16 PRO"
+    ]
+
+};
+
+
+/* =====================================
+   ATUALIZAR MODELOS
+===================================== */
+
+function updateModels(){
+
+    const brand =
+        document.getElementById("brand").value;
+
+    const modelSelect =
+        document.getElementById("model");
+
+    modelSelect.innerHTML = "";
+
+    models[brand].forEach(function(model){
+
+        const option =
+            document.createElement("option");
+
+        option.value = model;
+        option.textContent = model;
+
+        modelSelect.appendChild(option);
+
+    });
+
+}
+
+
+/* =====================================
+   NÚMERO ALEATÓRIO
+===================================== */
+
+function randomNumber(min,max){
+
+    return Math.floor(
+        Math.random() * (max - min + 1)
+    ) + min;
+
+}
+
+
+/* =====================================
+   VARIÁVEL DO TEXTO
+===================================== */
+
+let finalText = "";
+
+
+/* =====================================
+   GERAR
+===================================== */
+
+function generate(){
+
+    const brand =
+        document.getElementById("brand").value;
+
+    const model =
+        document.getElementById("model").value;
+
+    const type =
+        document.getElementById("senseType").value;
+
+    const dpiType =
+        document.getElementById("dpiType").value;
+
+
+    let min;
+    let max;
+    let typeName;
+
+
+    /* SENSI BAIXA */
+
+    if(type === "LOW"){
+
+        min = 1;
+        max = 80;
+
+        typeName = "SENSI BAIXA";
+
+    }
+
+
+    /* SENSI MÉDIA */
+
+    if(type === "MEDIUM"){
+
+        min = 81;
+        max = 140;
+
+        typeName = "SENSI MÉDIA";
+
+    }
+
+
+    /* SENSI ALTA */
+
+    if(type === "HIGH"){
+
+        min = 141;
+        max = 200;
+
+        typeName = "SENSI ALTA";
+
+    }
+
+
+    /* VALORES */
+
+    const geral =
+        randomNumber(min,max);
+
+    const vermelho =
+        randomNumber(min,max);
+
+    const mira2x =
+        randomNumber(min,max);
+
+    const mira4x =
+        randomNumber(min,max);
+
+    const miraWM =
+        randomNumber(min,max);
+
+
+    /* DPI */
+
+    let dpi = null;
+
+    if(dpiType === "YES"){
+
+        if(type === "LOW"){
+            dpi = randomNumber(350,430);
+        }
+
+        if(type === "MEDIUM"){
+            dpi = randomNumber(431,520);
+        }
+
+        if(type === "HIGH"){
+            dpi = randomNumber(521,600);
+        }
+
+    }
+
+
+    /* RESULTADO MARCA */
+
+    document.getElementById(
+        "resultBrand"
+    ).innerText = brand;
+
+
+    /* RESULTADO MODELO */
+
+    document.getElementById(
+        "resultModel"
+    ).innerText = model;
+
+
+    /* TIPO */
+
+    document.getElementById(
+        "resultType"
+    ).innerText = typeName;
+
+
+    /* DPI */
+
+    document.getElementById(
+        "resultDpi"
+    ).innerText =
+        dpi === null ? "SEM DPI" : dpi;
+
+
+    /* =================================
+       LISTA DE SENSIBILIDADE
+    ================================= */
+
+    const values = [
+
+        ["GERAL",geral],
+
+        ["PONTO VERMELHO",vermelho],
+
+        ["MIRA 2X",mira2x],
+
+        ["MIRA 4X",mira4x],
+
+        ["MIRA WM",miraWM]
+
+    ];
+
+
+    let html = "";
+
+
+    values.forEach(function(item){
+
+        const name = item[0];
+        const value = item[1];
+
+        const width =
+            (value / 200) * 100;
+
+
+        html += `
+
+        <div class="sense">
+
+            <div class="sense-header">
+
+                <span class="sense-name">
+                    ${name}
+                </span>
+
+                <span class="sense-value">
+                    ${value}
+                </span>
+
+            </div>
+
+            <div class="bar">
+
+                <div
+                    class="fill"
+                    style="width:${width}%">
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+
+    document.getElementById(
+        "senseList"
+    ).innerHTML = html;
+
+
+    /* =================================
+       CONFIGURAÇÕES DO DISPOSITIVO
+    ================================= */
+
+    let config = "";
+
+
+    if(brand === "APPLE"){
+
+        config += configItem(
+            "REDUZIR MOVIMENTO",
+            "ATIVADO"
+        );
+
+        config += configItem(
+            "TOQUE HÁPTICO",
+            "RÁPIDO"
+        );
+
+        config += configItem(
+            "EFEITOS DE MOVIMENTO",
+            "REDUZIDOS"
+        );
+
+        config += configItem(
+            "ANIMAÇÕES",
+            "REDUZIDAS"
+        );
+
+    }else{
+
+        config += configItem(
+            "VELOCIDADE DO PONTEIRO",
+            "MÁXIMA"
+        );
+
+        config += configItem(
+            "ATRASO DO MANTER PRESSIONADO",
+            "MUITO CURTO"
+        );
+
+        config += configItem(
+            "ESCALA DE ANIMAÇÃO",
+            "DESATIVADA"
+        );
+
+        config += configItem(
+            "ESCALA DE TRANSIÇÃO",
+            "DESATIVADA"
+        );
+
+        config += configItem(
+            "ESCALA DE DURAÇÃO",
+            "DESATIVADA"
+        );
+
+    }
+
+
+    document.getElementById(
+        "configList"
+    ).innerHTML = config;
+
+
+    /* =================================
+       TEXTO PARA COPIAR
+    ================================= */
+
+    const dpiText =
+        dpi === null ? "SEM DPI" : dpi;
+
+
+    finalText =
+
+        "FZK XITER\n\n" +
+
+        "MARCA: " +
+        brand + "\n" +
+
+        "MODELO: " +
+        model + "\n\n" +
+
+        "TIPO: " +
+        typeName + "\n\n" +
+
+        "GERAL: " +
+        geral + "\n" +
+
+        "PONTO VERMELHO: " +
+        vermelho + "\n" +
+
+        "MIRA 2X: " +
+        mira2x + "\n" +
+
+        "MIRA 4X: " +
+        mira4x + "\n" +
+
+        "MIRA WM: " +
+        miraWM + "\n\n" +
+
+        "DPI: " +
+        dpiText;
+
+
+    /* =================================
+       TROCAR TELA
+    ================================= */
+
+    document.getElementById(
+        "home"
+    ).classList.add("hidden");
+
+    document.getElementById(
+        "result"
+    ).classList.remove("hidden");
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* =====================================
+   ITEM DE CONFIGURAÇÃO
+===================================== */
+
+function configItem(name,value){
+
+    return `
+
+        <div class="config">
+
+            <span>
+                ${name}
+            </span>
+
+            <strong>
+                ${value}
+            </strong>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================
+   COPIAR CONFIGURAÇÃO
+===================================== */
+
+function copyConfig(){
+
+    if(!finalText){
+        return;
+    }
+
+
+    if(
+        navigator.clipboard &&
+        navigator.clipboard.writeText
+    ){
+
+        navigator.clipboard
+            .writeText(finalText)
+            .then(function(){
+
+                document.getElementById(
+                    "status"
+                ).innerText =
+                    "✅ CONFIGURAÇÃO COPIADA!";
+
+            })
+            .catch(function(){
+
+                fallbackCopy();
+
+            });
+
+    }else{
+
+        fallbackCopy();
+
+    }
+
+}
+
+
+/* =====================================
+   COPIA ALTERNATIVA
+===================================== */
+
+function fallbackCopy(){
+
+    const textarea =
+        document.createElement("textarea");
+
+    textarea.value = finalText;
+
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+
+    document.body.appendChild(textarea);
+
+    textarea.focus();
+    textarea.select();
+
+    try{
+
+        document.execCommand("copy");
+
+        document.getElementById(
+            "status"
+        ).innerText =
+            "✅ CONFIGURAÇÃO COPIADA!";
+
+    }catch(error){
+
+        alert(
+            "Não foi possível copiar automaticamente."
+        );
+
+    }
+
+    document.body.removeChild(textarea);
+
+}
+
+
+/* =====================================
+   VOLTAR
+===================================== */
+
+function backHome(){
+
+    document.getElementById(
+        "result"
+    ).classList.add("hidden");
+
+    document.getElementById(
+        "home"
+    ).classList.remove("hidden");
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* =====================================
+   INICIAR MODELOS
+===================================== */
+
+updateModels();
+
+</script>
+
+</body>
+</html>
